@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+</head>
+<body>
+    <h1>Movie Recommendation System</h1>
+    <form method="POST">
+        <input type="text" name="movie_name" placeholder="Enter movie name" required>
+        <button type="submit">Recommend</button>
+    </form>
+
+    {% if names %}
+        <h2>Recommended Movies:</h2>
+        <ul>
+        {% for name, poster in zip(names, posters) %}
+            <li>
+                <p>{{ name }}</p>
+                <img src="{{ poster }}" width="150">
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

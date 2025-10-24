@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            margin: 0 0 20px 0;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .movies-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 20px 40px 20px;
+        }
+
+        .movie-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 200px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .movie-title {
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Recommendation System</h1>
+
+    <form method="POST">
+        <input type="text" name="movie_name" placeholder="Enter a movie name" required>
+        <input type="submit" value="Recommend">
+    </form>
+
+    {% if names and posters %}
+    <div class="movies-container">
+        {% for name, poster in zip(names, posters) %}
+        <div class="movie-card">
+            <img src="{{ poster }}" alt="{{ name }}">
+            <div class="movie-title">{{ name }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>
